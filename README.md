@@ -59,6 +59,9 @@ Este projeto é um simples tradutor e codificador de Código Morse. Ele permite 
 Olá Mundo
 ```
 
+### 📸 Screenshot
+![morse-code](https://i.imgur.com/vjk1uHD.png)
+
 ## 🎨 Personalização
 
 Sinta-se à vontade para modificar o código e melhorar o projeto conforme necessário.
