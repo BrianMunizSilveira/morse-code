@@ -1,42 +1,78 @@
-// Dicionário de Código Morse
-const morseDictionary = {
-    'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....',
-    'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---', 'P': '.--.',
-    'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-',
-    'Y': '-.--', 'Z': '--..',
-    '0': '-----', '1': '.----', '2': '..---', '3': '...--', '4': '....-', '5': '.....',
-    '6': '-....', '7': '--...', '8': '---..', '9': '----.',
-    ' ': ' / '  // Espaço entre palavras em Código Morse
-};
+// Importações do módulo Morse (morse.js)
+import { textToMorse, morseToText } from "./morse.js";
 
-// Função para converter texto em Código Morse
-function textToMorse(text) {
-    return text.toUpperCase().split('').map(char => {
-        return morseDictionary[char] || ''; // Retorna o Código Morse ou vazio se o caractere não estiver no dicionário
-    }).join(' ');
+// Elementos DOM
+const textInput = document.getElementById("textInput");
+const morseOutput = document.getElementById("morseOutput");
+const historyList = document.getElementById("historyList");
+const clearHistoryBtn = document.getElementById("clearHistoryBtn");
+const copyBtn = document.getElementById("copyBtn");
+const clearBtn = document.getElementById("clearBtn");
+
+// Função para atualizar o histórico
+function updateHistory(type, input, output) {
+  const newItem = document.createElement("li");
+  newItem.textContent = `${type}: "${input}" => "${output}"`;
+  historyList.appendChild(newItem);
 }
 
-// Função para converter Código Morse em texto
-function morseToText(morse) {
-    // Inverte o dicionário para mapear Código Morse para texto
-    const invertedMorseDictionary = Object.fromEntries(
-        Object.entries(morseDictionary).map(([key, value]) => [value, key])
-    );
-
-    return morse.split(' ').map(code => {
-        return invertedMorseDictionary[code] || ''; // Retorna a letra ou vazio se o código não estiver no dicionário
-    }).join('');
+// Função para copiar texto para a área de transferência
+function copyToClipboard(text) {
+  navigator.clipboard
+    .writeText(text)
+    .then(() => {
+      alert("Texto copiado para a área de transferência!");
+    })
+    .catch((err) => {
+      console.error("Erro ao copiar texto:", err);
+    });
 }
 
-// Configuração dos botões
-document.getElementById('toMorseBtn').addEventListener('click', () => {
-    const textInput = document.getElementById('textInput').value;
-    const morseOutput = textToMorse(textInput);
-    document.getElementById('morseOutput').value = morseOutput;
+// Botão para traduzir texto para Morse
+document.getElementById("toMorseBtn").addEventListener("click", () => {
+  const input = textInput.value.trim();
+  if (!input) {
+    alert("Por favor, insira um texto para traduzir.");
+    return;
+  }
+  const output = textToMorse(input);
+  morseOutput.value = output;
+
+  // Atualiza o histórico
+  updateHistory("Texto para Morse", input, output);
 });
 
-document.getElementById('toTextBtn').addEventListener('click', () => {
-    const morseInput = document.getElementById('morseOutput').value;
-    const textOutput = morseToText(morseInput);
-    document.getElementById('textInput').value = textOutput;
+// Botão para traduzir Morse para texto
+document.getElementById("toTextBtn").addEventListener("click", () => {
+  const input = morseOutput.value.trim();
+  if (!input) {
+    alert("Por favor, insira um código Morse para traduzir.");
+    return;
+  }
+  const output = morseToText(input);
+  textInput.value = output;
+
+  // Atualiza o histórico
+  updateHistory("Morse para Texto", input, output);
+});
+
+// Botão para copiar o resultado atual
+copyBtn.addEventListener("click", () => {
+  const output = morseOutput.value.trim();
+  if (!output) {
+    alert("Nada para copiar! Traduza um texto primeiro.");
+    return;
+  }
+  copyToClipboard(output);
+});
+
+// Botão para limpar os campos de entrada e saída
+clearBtn.addEventListener("click", () => {
+  textInput.value = "";
+  morseOutput.value = "";
+});
+
+// Botão para limpar o histórico
+clearHistoryBtn.addEventListener("click", () => {
+  historyList.innerHTML = "";
 });

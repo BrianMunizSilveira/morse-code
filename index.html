@@ -1,22 +1,49 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tradutor e Codificador de Código Morse</title>
-    <link rel="stylesheet" href="./src/css/styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./src/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
     <div class="container">
-        <h1>Tradutor de Código Morse</h1>
-        
-        <textarea id="textInput" placeholder="Digite seu texto aqui..."></textarea>
-        <button id="toMorseBtn">Traduzir para Morse</button>
-        
-        <textarea id="morseOutput" placeholder="Código Morse aparecerá aqui..."></textarea>
-        <button id="toTextBtn">Traduzir para Texto</button>
+      <h1>Codificador e Tradutor de Código Morse</h1>
+
+      <textarea
+        id="textInput"
+        placeholder="Digite seu texto aqui..."
+      ></textarea>
+      <button id="toMorseBtn">
+        <i class="fa-solid fa-arrow-right"></i> Traduzir para Morse
+      </button>
+
+      <textarea
+        id="morseOutput"
+        placeholder="Código Morse aparecerá aqui..."
+      ></textarea>
+      <button id="toTextBtn">
+        <i class="fa-solid fa-arrow-left"></i> Traduzir para Texto
+      </button>
+
+      <div class="actions">
+        <button id="copyBtn"><i class="fa-solid fa-copy"></i> Copiar</button>
+        <button id="clearBtn"><i class="fa-solid fa-trash"></i> Limpar</button>
+      </div>
+
+      <div class="history">
+        <h2>Histórico</h2>
+        <ul id="historyList"></ul>
+        <button id="clearHistoryBtn" class="history-clear-btn">
+          Limpar Histórico
+        </button>
+      </div>
     </div>
 
-    <script src="./src/js/script.js"></script>
-</body>
+    <script type="module" src="./src/js/script.js"></script>
+  </body>
 </html>

@@ -1,0 +1,47 @@
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .container {
+        width: 100%;
+        max-width: none;
+        padding: 15px;
+    }
+
+    textarea {
+        font-size: 14px;
+        height: 80px;
+    }
+
+    .actions button {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .history {
+        display: none; /* Esconde o histórico em telas pequenas */
+    }
+
+    .morse-map {
+        display: none; /* Esconde o mapa de caracteres em telas pequenas */
+    }
+}
+
+@media (max-width: 480px) {
+    textarea {
+        height: 60px;
+        font-size: 12px;
+    }
+
+    button {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+}
