@@ -1,84 +1,57 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Codificador e Tradutor de Código Morse</title>
 
-    <!-- Open Graph Meta Tags (Facebook, WhatsApp, etc.) -->
-    <meta
-      property="og:title"
-      content="Codificador e Tradutor de Código Morse"
-    />
-    <meta
-      property="og:description"
-      content="Converta qualquer texto para código Morse e vice-versa!"
-    />
-    <meta property="og:image" content="https://i.imgur.com/vqj6ufL.png" />
-    <meta
-      property="og:url"
-      content="https://brianmunizsilveira.github.io/morse-code/"
-    />
-    <meta property="og:type" content="website" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Codificador e Tradutor de Código Morse</title>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
+  <!-- Open Graph Meta Tags (Facebook, WhatsApp, etc.) -->
+  <meta property="og:title" content="Codificador e Tradutor de Código Morse" />
+  <meta property="og:description" content="Converta qualquer texto para código Morse e vice-versa!" />
+  <meta property="og:image" content="https://i.imgur.com/vqj6ufL.png" />
+  <meta property="og:url" content="https://brianmunizsilveira.github.io/morse-code/" />
+  <meta property="og:type" content="website" />
 
-    <link rel="stylesheet" href="./src/css/styles.css" />
-    <link rel="stylesheet" href="./src/css/responsive.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
-    <link
-      rel="shortcut icon"
-      href="./src/img/favicon.webp"
-      type="image/x-icon"
-    />
-    <link
-      rel="shortcut icon"
-      href="./src/img/favicon.png"
-      type="image/x-icon"
-    />
-    <link
-      rel="shortcut icon"
-      href="./src/img/favicon.ico"
-      type="image/x-icon"
-    />
-  </head>
-  <body>
-    <div class="container">
-      <h1>Codificador e Tradutor de Código Morse</h1>
+  <link rel="stylesheet" href="./src/css/styles.css" />
+  <link rel="stylesheet" href="./src/css/responsive.css" />
 
-      <textarea
-        id="textInput"
-        placeholder="Digite seu texto aqui..."
-      ></textarea>
-      <button id="toMorseBtn">
-        <i class="fa-solid fa-arrow-right"></i> Traduzir para Morse
-      </button>
+  <link rel="shortcut icon" href="./src/img/favicon.webp" type="image/x-icon" />
+  <link rel="shortcut icon" href="./src/img/favicon.png" type="image/x-icon" />
+  <link rel="shortcut icon" href="./src/img/favicon.ico" type="image/x-icon" />
+</head>
 
-      <textarea
-        id="morseOutput"
-        placeholder="Código Morse aparecerá aqui..."
-      ></textarea>
-      <button id="toTextBtn">
-        <i class="fa-solid fa-arrow-left"></i> Traduzir para Texto
-      </button>
+<body>
+  <div class="container">
+    <h1>Codificador e Tradutor de Código Morse</h1>
 
-      <div class="actions">
-        <button id="copyBtn"><i class="fa-solid fa-copy"></i> Copiar</button>
-        <button id="clearBtn"><i class="fa-solid fa-trash"></i> Limpar</button>
-      </div>
+    <textarea id="textInput" placeholder="Digite seu texto aqui..."></textarea>
+    <button id="toMorseBtn">
+      <i class="fa-solid fa-arrow-right"></i> Traduzir para Morse
+    </button>
 
-      <div class="history">
-        <h2>Histórico</h2>
-        <ul id="historyList"></ul>
-        <button id="clearHistoryBtn" class="history-clear-btn">
-          Limpar Histórico
-        </button>
-      </div>
+    <textarea id="morseOutput" placeholder="Código Morse aparecerá aqui..."></textarea>
+    <button id="toTextBtn">
+      <i class="fa-solid fa-arrow-left"></i> Traduzir para Texto
+    </button>
+
+    <div class="actions">
+      <button id="copyBtn"><i class="fa-solid fa-copy"></i> Copiar</button>
+      <button id="clearBtn"><i class="fa-solid fa-trash"></i> Limpar</button>
     </div>
 
-    <script type="module" src="./src/js/script.js"></script>
-  </body>
+    <div class="history">
+      <h2>Histórico</h2>
+      <ul id="historyList"></ul>
+      <button id="clearHistoryBtn" class="history-clear-btn">
+        Limpar Histórico
+      </button>
+    </div>
+  </div>
+
+  <script type="module" src="./src/js/script.js"></script>
+</body>
+
 </html>
