@@ -111,3 +111,13 @@ button:hover {
 .history-clear-btn:hover {
   background-color: #e04343;
 }
+
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+  transition: all 0.3s;
+}
+
+a:hover {
+  color: var(--text-color);
+}
