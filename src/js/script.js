@@ -28,6 +28,12 @@ function copyToClipboard(text) {
     });
 }
 
+// Função para validar o texto em Morse
+function isValidMorse(morse) {
+  const validMorseRegex = /^[.\-/\s]+$/; // Apenas ".", "-", "/", e espaços são permitidos
+  return validMorseRegex.test(morse);
+}
+
 // Botão para traduzir texto para Morse
 document.getElementById("toMorseBtn").addEventListener("click", () => {
   const input = textInput.value.trim();
@@ -35,11 +41,16 @@ document.getElementById("toMorseBtn").addEventListener("click", () => {
     alert("Por favor, insira um texto para traduzir.");
     return;
   }
-  const output = textToMorse(input);
-  morseOutput.value = output;
+  try {
+    const output = textToMorse(input);
+    morseOutput.value = output;
 
-  // Atualiza o histórico
-  updateHistory("Texto para Morse", input, output);
+    // Atualiza o histórico
+    updateHistory("Texto para Morse", input, output);
+  } catch (error) {
+    console.error("Erro ao converter texto para Morse:", error);
+    alert("Ocorreu um erro ao converter texto para Morse.");
+  }
 });
 
 // Botão para traduzir Morse para texto
@@ -49,11 +60,20 @@ document.getElementById("toTextBtn").addEventListener("click", () => {
     alert("Por favor, insira um código Morse para traduzir.");
     return;
   }
-  const output = morseToText(input);
-  textInput.value = output;
+  if (!isValidMorse(input)) {
+    alert("O código Morse inserido contém caracteres inválidos.");
+    return;
+  }
+  try {
+    const output = morseToText(input);
+    textInput.value = output;
 
-  // Atualiza o histórico
-  updateHistory("Morse para Texto", input, output);
+    // Atualiza o histórico
+    updateHistory("Morse para Texto", input, output);
+  } catch (error) {
+    console.error("Erro ao converter Morse para texto:", error);
+    alert("Ocorreu um erro ao converter Morse para texto.");
+  }
 });
 
 // Botão para copiar o resultado atual
