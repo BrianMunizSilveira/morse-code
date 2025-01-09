@@ -41,6 +41,7 @@ document.getElementById("toMorseBtn").addEventListener("click", () => {
     alert("Por favor, insira um texto para traduzir.");
     return;
   }
+
   try {
     const output = textToMorse(input);
     morseOutput.value = output;
@@ -48,8 +49,7 @@ document.getElementById("toMorseBtn").addEventListener("click", () => {
     // Atualiza o histórico
     updateHistory("Texto para Morse", input, output);
   } catch (error) {
-    console.error("Erro ao converter texto para Morse:", error);
-    alert("Ocorreu um erro ao converter texto para Morse.");
+    alert(error.message); // Mostra mensagem detalhada de erro
   }
 });
 
@@ -60,10 +60,7 @@ document.getElementById("toTextBtn").addEventListener("click", () => {
     alert("Por favor, insira um código Morse para traduzir.");
     return;
   }
-  if (!isValidMorse(input)) {
-    alert("O código Morse inserido contém caracteres inválidos.");
-    return;
-  }
+
   try {
     const output = morseToText(input);
     textInput.value = output;
@@ -71,8 +68,7 @@ document.getElementById("toTextBtn").addEventListener("click", () => {
     // Atualiza o histórico
     updateHistory("Morse para Texto", input, output);
   } catch (error) {
-    console.error("Erro ao converter Morse para texto:", error);
-    alert("Ocorreu um erro ao converter Morse para texto.");
+    alert(error.message); // Mostra mensagem detalhada de erro
   }
 });
 

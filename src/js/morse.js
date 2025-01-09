@@ -41,22 +41,47 @@ export const morseDictionary = {
 
 // Função para converter texto em Código Morse
 export function textToMorse(text) {
+  // Identificar caracteres inválidos
+  const invalidChars = text
+    .toUpperCase()
+    .split("")
+    .filter((char) => !morseDictionary[char]);
+
+  if (invalidChars.length > 0) {
+    throw new Error(
+      `Os seguintes caracteres não são suportados: ${invalidChars.join(", ")}`
+    );
+  }
+
+  // Converter texto em Código Morse
   return text
     .toUpperCase()
     .split("")
-    .map((char) => morseDictionary[char] || "?")
+    .map((char) => morseDictionary[char])
     .join(" ");
 }
 
 // Função para converter Código Morse em texto
 export function morseToText(morse) {
-  // Inverte o dicionário para mapear Código Morse para texto
+  // Inverter o dicionário para mapear Código Morse para texto
   const invertedDictionary = Object.fromEntries(
-    Object.entries(morseDictionary).map(([key, value]) => [value, key])
+    Object.entries(morseDictionary).map(([key, value]) => [value.trim(), key])
   );
 
+  // Identificar códigos Morse inválidos
+  const invalidCodes = morse
+    .split(" ")
+    .filter((code) => !invertedDictionary[code]);
+
+  if (invalidCodes.length > 0) {
+    throw new Error(
+      `Os seguintes códigos Morse não são suportados: ${invalidCodes.join(", ")}`
+    );
+  }
+
+  // Converter Código Morse em texto
   return morse
     .split(" ")
-    .map((code) => invertedDictionary[code] || "?")
+    .map((code) => invertedDictionary[code])
     .join("");
 }
