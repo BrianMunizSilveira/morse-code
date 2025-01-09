@@ -1,5 +1,6 @@
 // Dicionário de Código Morse
 export const morseDictionary = {
+  // Mapeamento de caracteres para Código Morse
   A: ".-",
   B: "-...",
   C: "-.-.",
@@ -26,6 +27,8 @@ export const morseDictionary = {
   X: "-..-",
   Y: "-.--",
   Z: "--..",
+
+  // Números
   0: "-----",
   1: ".----",
   2: "..---",
@@ -36,17 +39,51 @@ export const morseDictionary = {
   7: "--...",
   8: "---..",
   9: "----.",
+
+  // Caracteres especiais
+  ".": ".-.-.-",
+  ",": "--..--",
+  ":": "---...",
+  "?": "..--..",
+  "'": ".----.",
+  "-": "-....-",
+  "/": "-..-.",
+  "(": "-.--.",
+  ")": "-.--.-",
+  "\"": ".-..-.",
+  "@": ".--.-.",
+  "=": "-...-",
+  "!": "-.-.--",
+
+  // Caracteres com acentuação 
+  "Á": ".--.-",
+  "Ã": ".--.",
+  "Â": ".-..-",
+  "É": "..-..",
+  "Ê": "-..-.",
+  "Í": "..-..",
+  "Ó": "---.",
+  "Ô": "---.",
+  "Õ": "---.",
+  "Ú": "..--",
+  "Ç": "-.-..",
+
+  // Espaço
   " ": " / ", // Espaço entre palavras em Código Morse
 };
 
+const testString = ",";
+console.log(textToMorse(testString)); // Deve exibir "--..--"
+
+
 // Função para converter texto em Código Morse
 export function textToMorse(text) {
-  // Identificar caracteres inválidos
-  const invalidChars = text
-    .toUpperCase()
-    .split("")
-    .filter((char) => !morseDictionary[char]);
+  console.log("Texto recebido:", text); // Depuração
 
+  // Verificar caracteres inválidos
+  const invalidChars = text
+    .split("")
+    .filter((char) => char !== " " && !morseDictionary[char.toUpperCase()]);
   if (invalidChars.length > 0) {
     throw new Error(
       `Os seguintes caracteres não são suportados: ${invalidChars.join(", ")}`
@@ -57,9 +94,13 @@ export function textToMorse(text) {
   return text
     .toUpperCase()
     .split("")
-    .map((char) => morseDictionary[char])
+    .map((char) => {
+      // Espaço é tratado separadamente
+      return char === " " ? morseDictionary[" "] : morseDictionary[char] || "?";
+    })
     .join(" ");
 }
+
 
 // Função para converter Código Morse em texto
 export function morseToText(morse) {
@@ -68,20 +109,27 @@ export function morseToText(morse) {
     Object.entries(morseDictionary).map(([key, value]) => [value.trim(), key])
   );
 
-  // Identificar códigos Morse inválidos
-  const invalidCodes = morse
-    .split(" ")
-    .filter((code) => !invertedDictionary[code]);
+  // Separar palavras pelo espaço "/"
+  const words = morse.split(" / ");
 
-  if (invalidCodes.length > 0) {
-    throw new Error(
-      `Os seguintes códigos Morse não são suportados: ${invalidCodes.join(", ")}`
-    );
-  }
+  // Converter cada palavra separadamente
+  const decodedWords = words.map((word) => {
+    // Separar os caracteres Morse por espaços simples
+    const letters = word.trim().split(" ");
 
-  // Converter Código Morse em texto
-  return morse
-    .split(" ")
-    .map((code) => invertedDictionary[code])
-    .join("");
+    // Converter cada letra para texto
+    return letters
+      .map((code) => {
+        if (!invertedDictionary[code]) {
+          throw new Error(
+            `Os seguintes códigos Morse não são suportados: ${code}`
+          );
+        }
+        return invertedDictionary[code];
+      })
+      .join("");
+  });
+
+  // Juntar as palavras decodificadas com espaços
+  return decodedWords.join(" ");
 }
