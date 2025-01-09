@@ -57,15 +57,8 @@ body {
     position: relative;
     max-width: 800px;
     padding: 3rem;
-    background: rgba(244, 228, 188, 0.95);
-    border: var(--border-vintage);
-    box-shadow: 8px 8px 0 var(--color-shadow);
-    transform: rotate(-1deg);
+    color: #fff;
     transition: transform 0.3s ease;
-}
-
-.hero-content:hover {
-    transform: rotate(0deg);
 }
 
 .hero-content h1 {
@@ -87,8 +80,7 @@ body {
 .btn {
     display: inline-block;
     padding: 1rem 2rem;
-    background-color: var(--color-accent);
-    color: var(--color-parchment);
+    color: #fff;
     text-decoration: none;
     border: 2px solid var(--color-ink);
     font-weight: 600;
