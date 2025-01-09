@@ -121,3 +121,54 @@ a {
 a:hover {
   color: var(--text-color);
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: #3c8b3f;
+    --secondary-color: #45a049;
+    --background-color: #333;
+    --text-color: #fff;
+    --button-hover: #5cd464;
+    --container-shadow: rgba(255, 255, 255, 0.2);
+    --clear-btn: #d84343;
+    --clear-btn-hover: #bf3b3b;
+  }
+
+  .container {
+    background-color: var(--background-color);
+    box-shadow: 0px 0px 15px var(--container-shadow);
+  }
+
+  textarea {
+    color: var(--text-color);
+    background-color: #333;
+    border: 1px solid #555;
+  }
+
+  .history>ul {
+    color: var(--text-color);
+    background-color: #333;
+    border: 1px solid #555;
+  }
+
+  .history-clear-btn {
+    background-color: var(--clear-btn);
+  }
+
+  .history-clear-btn:hover {
+    background-color: var(--clear-btn-hover);
+  }
+
+  a:hover {
+    text-decoration: underline;
+    color: #ddd;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #666;
+  }
+
+  footer>p {
+    color: #ddd;
+  }
+}
